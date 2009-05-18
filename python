@@ -7,4 +7,4 @@ $w=index$_,"\n";
 @t=index$_,o;
 r;
 s/[h-l]+//;
-for$c(split'',$&){+{l,sub{s/(x(.))/ox/;r},h,sub{s/((.)x)/xo/;r},k,sub{s/((.)(.{$w})x)/x$3o/s;r},j,sub{s/x(.{$w})(.)/o$1x/s;r}}->{$c}()}
+for$c(split'',$&){eval's/'.+{l,'(x(.))/ox',h,'((.)x)/xo',k,'((.)(.{$w})x)/x$3o',j,'x(.{$w})(.)/o$1x'}->{$c}.'/s;r'}
