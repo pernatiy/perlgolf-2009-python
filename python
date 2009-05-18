@@ -1,11 +1,11 @@
 #!perl -p0
-sub r($){
+sub r{
     push@t,index$_,x;
-    $_[0]eq"-" && substr$_,shift@t,1,"-"
+    $2eq"-" && substr$_,shift@t,1,"-"
 }
-%m=(l,sub{s/x(.)/ox/;r$1},h,sub{s/(.)x/xo/;r$1},k,sub{s/(.)(.{$w})x/x$2o/s;r$1},j,sub{s/x(.{$w})(.)/o$1x/s;r$2});
+%m=(l,sub{s/(x(.))/ox/;r},h,sub{s/((.)x)/xo/;r},k,sub{s/((.)(.{$w})x)/x$3o/s;r},j,sub{s/x(.{$w})(.)/o$1x/s;r});
 $w=index$_,"\n";
 @t=index$_,o;
-r 1;
+r;
 s/[h-l]+//;
 for$c(split'',$&){$m{$c}()}
