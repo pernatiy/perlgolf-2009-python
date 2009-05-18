@@ -1,15 +1,15 @@
 #!perl
-sub w{
-    push@t,index$_,"x"
-}
 sub r($){
-    $_[0]eq"-"and substr$_,shift@t,1,"-"
+    push@t,index$_,"x";
+    $_[0]eq"-" && substr$_,shift@t,1,"-"
 }
 %m=(l,sub{s/x(.)/ox/;r$1},h,sub{s/(.)x/xo/;r$1},k,sub{s/(.)(.{$w})x/x$2o/s;r$1},j,sub{s/x(.{$w})(.)/o$1x/s;r$2});
 undef$/;
 $_=<>;
 /.*/;
 $w=length($&);
-@t=index$_,"o";s/[h-l].*(?=.)//s;
-for$c(split'',$&){w;$m{$c}->()}
+@t=index$_,"o";
+r"1";
+s/[h-l].*(?=.)//s;
+for$c(split'',$&){$m{$c}()}
 print
