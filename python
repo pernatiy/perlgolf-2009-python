@@ -3,9 +3,9 @@ sub r{
     push@t,index$_,x;
     $2eq"-" && substr$_,shift@t,1,"-"
 }
-%m=(l,sub{s/(x(.))/ox/;r},h,sub{s/((.)x)/xo/;r},k,sub{s/((.)(.{$w})x)/x$3o/s;r},j,sub{s/x(.{$w})(.)/o$1x/s;r});
+%m=(l,[qr/(x(.))/,ox],h,[qr/((.)x)/,xo],k,[qr/((.)(.{$w})x)/,'x$3o'],j,[qr/x(.{$w})(.)/,'o$1x']);
 $w=index$_,"\n";
 @t=index$_,o;
 r;
 s/[h-l]+//;
-for$c(split'',$&){$m{$c}()}
+for$c(split'',$&){s/$m{$c}[0]/$m{$c}[1]/e;r}
