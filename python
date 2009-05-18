@@ -1,0 +1,27 @@
+#!perl
+
+%m = (
+    l => sub { push @t, index $_, "x"; s/x(.)/ox/;           print qq/match is "$1"\n/; $1 eq "-" and print qq/removing tail from $t[0]\n/ and substr $_, shift @t, 1, "-" },
+    h => sub { push @t, index $_, "x"; s/(.)x/xo/;           print qq/match is "$1"\n/; $1 eq "-" and print qq/removing tail from $t[0]\n/ and substr $_, shift @t, 1, "-" },
+    k => sub { push @t, index $_, "x"; s/(.)(.{$w})x/x$2o/s; print qq/match is "$1"\n/; $1 eq "-" and print qq/removing tail from $t[0]\n/ and substr $_, shift @t, 1, "-" },
+    j => sub { push @t, index $_, "x"; s/x(.{$w})(.)/o$1x/s; print qq/match is "$2"\n/; $2 eq "-" and print qq/removing tail from $t[0]\n/ and substr $_, shift @t, 1, "-" },
+);
+
+@field = <>;
+chomp($commands = pop @field);
+$w = length($field[0]) - 1;
+
+$_ = join "" => @field;
+@t = (index $_, "o");
+for $c (split '', $commands) {
+    print qq/==> exec command "$c" ($m{$c})\n/;
+    $m{$c}->();
+    print;
+}
+print "\n\n";
+print
+
+__END__
+
+substr$_,shift@t,1,"-"
+substr($_,shift@t)="-"
