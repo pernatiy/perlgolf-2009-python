@@ -1,13 +1,14 @@
 #!perl
-sub r($$){
-    push@t,$_[0];
-    $_[1]eq"-"and substr$_,shift@t,1,"-"
+sub r($$$){
+    push@t,${$_[0]}[0]-$_[1];
+    $_[2]eq"-"and substr$_,shift@t,1,"-"
 }
-%m=(l,sub{s/x(.)/ox/;r$-[0],$1},h,sub{s/(.)x/xo/;r$+[0]-1,$1},k,sub{s/(.)(.{$w})x/x$2o/s;r$+[0]-1,$1},j,sub{s/x(.{$w})(.)/o$1x/s;r$-[0],$2});
+%m=(l,sub{s/x(.)/ox/;r '-',0,$1},h,sub{s/(.)x/xo/;r '+',1,$1},k,sub{s/(.)(.{$w})x/x$2o/s;r '+',1,$1},j,sub{s/x(.{$w})(.)/o$1x/s;r '-',0,$2});
 undef$/;
 $_=<>;
 /.*/;
 $w=length($&);
-@t=index$_,"o";s/[hjkl].*(?=.)//s;
+@t=index$_,"o";
+s/[hjkl].*(?=.)//s;
 for$c(split'',$&){$m{$c}->()}
 print
