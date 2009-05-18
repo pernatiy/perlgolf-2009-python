@@ -1,11 +1,9 @@
 #!perl
-sub w{
-    push@t,index$_,"x"
+sub r($$){
+    push@t,$_[0];
+    $_[1]eq"-"and substr$_,shift@t,1,"-"
 }
-sub r($){
-    $_[0]eq"-"and substr$_,shift@t,1,"-"
-}
-%m=(l,sub{w;s/x(.)/ox/;r$1},h,sub{w;s/(.)x/xo/;r$1},k,sub{w;s/(.)(.{$w})x/x$2o/s;r$1},j,sub{w;s/x(.{$w})(.)/o$1x/s;r$2});
+%m=(l,sub{s/x(.)/ox/;r$-[0],$1},h,sub{s/(.)x/xo/;r$+[0]-1,$1},k,sub{s/(.)(.{$w})x/x$2o/s;r$+[0]-1,$1},j,sub{s/x(.{$w})(.)/o$1x/s;r$-[0],$2});
 undef$/;
 $_=<>;
 /.*/;
