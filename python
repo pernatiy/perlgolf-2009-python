@@ -1,10 +1,11 @@
 #!perl -p0
 sub r{
-    push@t,index$_,x;
-    $2eq"-" && substr$_,shift@t,1,"-"
+    push@t,index$r,x;
+    $2eq"-" && substr$r,shift@t,1,"-"
 }
 $w=index$_,"\n";
 @t=index$_,o;
+$r=$_;
 r;
-s/[h-l]+//;
-for$c(split'',$&){eval's/'.+{l,'(x(.))/ox',h,'((.)x)/xo',k,'((.)(.{$w})x)/x$3o',j,'x(.{$w})(.)/o$1x'}->{$c}.'/s;r'}
+s![h-l]!'$r=~s/'.+{l,'(x(.))/ox',h,'((.)x)/xo',k,'((.)(.{$w})x)/x$3o',j,'x(.{$w})(.)/o$1x'}->{$&}.'/s;r';''!ges;
+print $r;
