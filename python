@@ -3,9 +3,8 @@ sub r{
     push@t,index$_,x;
     $2eq"-" && substr$_,shift@t,1,"-"
 }
-%m=(l,sub{s/(x(.))/ox/;r},h,sub{s/((.)x)/xo/;r},k,sub{s/((.)(.{$w})x)/x$3o/s;r},j,sub{s/x(.{$w})(.)/o$1x/s;r});
 $w=index$_,"\n";
 @t=index$_,o;
 r;
 s/[h-l]+//;
-for$c(split'',$&){$m{$c}()}
+for$c(split'',$&){+{l,sub{s/(x(.))/ox/;r},h,sub{s/((.)x)/xo/;r},k,sub{s/((.)(.{$w})x)/x$3o/s;r},j,sub{s/x(.{$w})(.)/o$1x/s;r}}->{$c}()}
