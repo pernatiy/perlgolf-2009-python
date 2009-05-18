@@ -3,4 +3,4 @@ sub i{index$_,shift}
 $w=i"\n";
 @t=(i(o),i x);
 s/[h-l]+.//s;
-for$c(split'',$&){eval's/'.{l,'(x(.))/ox',h,'((.)x)/xo',k,'((.)(.{$w})x)/x$3o',j,'x(.{$w})(.)/o$1x'}->{$c}.'/s;push@t,i x;$2eq"-"&&substr$_,shift@t,1,"-"'}
+for$c(split'',$&){eval's/'.('(x(.))/ox','((.)x)/xo','((.)(.{$w})x)/x$3o','x(.{$w})(.)/o$1x','')[index lhkj,$c].'/s;push@t,i x;$2eq"-"&&substr$_,shift@t,1,"-"'}
